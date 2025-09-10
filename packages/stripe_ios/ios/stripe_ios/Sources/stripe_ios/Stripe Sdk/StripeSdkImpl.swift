@@ -1213,7 +1213,12 @@ func findViewControllerPresenter(from uiViewController: UIViewController) -> UIV
     // This is a bit of a hack: We traverse the view hierarchy looking for the most reasonable VC to present from.
     // A VC hosted within a SwiftUI cell, for example, doesn't have a parent, so we need to find the UIWindow.
     var presentingViewController: UIViewController =
-        uiViewController.view.window?.rootViewController ?? uiViewController
+        uiViewController.view.window?.rootViewController
+        ?? UIApplication.shared.delegate?.window??.rootViewController
+        ?? UIApplication.shared.windows.first(where: {
+                $0.isKeyWindow
+          })?.rootViewController
+        ?? uiViewController
 
     // Find the most-presented UIViewController
     while let presented = presentingViewController.presentedViewController {
