@@ -25,13 +25,13 @@ public class GooglePayButtonManagerDelegate<T extends View, U extends BaseViewMa
   public void setProperty(T view, String propName, @Nullable Object value) {
     switch (propName) {
       case "type":
-        mViewManager.setType(view, value == null ? -1 : ((Double) value).intValue());
+        mViewManager.setType(view, value == null ? -1 : (Integer) value);
         break;
       case "appearance":
-        mViewManager.setAppearance(view, value == null ? 0 : ((Double) value).intValue());
+        mViewManager.setAppearance(view, value == null ? 0 : (Integer) value);
         break;
       case "borderRadius":
-        mViewManager.setBorderRadius(view, value == null ? 0 : ((Double) value).intValue());
+        mViewManager.setBorderRadius(view, value == null ? 0 : (Integer) value);
         break;
       default:
         super.setProperty(view, propName, value);
